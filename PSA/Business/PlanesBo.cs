@@ -67,35 +67,45 @@ namespace Business
             {
                 Data.ResponseModels.APIReponseDetails apiresponse = new Data.ResponseModels.APIReponseDetails();
 
-                var validateobj = db.PlaneMakes.Where(a => a.Id == request.makeid && a.Status == "A").ToList();
+                var validateobjexist = db.PlaneMakes.Where(a => a.Id == request.makeid && a.Status == "A").ToList();
 
-                if (validateobj.Count > 0)
+                if (validateobjexist.Count > 0)
                 {
-                    DateTime currentdatetime = DateTime.Now;
+                    var validateobj = db.PlaneMakes.Where(a => a.Name == request.name && a.Id != request.makeid && a.Status == "A").ToList();
 
-                    Data.Models.PlaneMake obj = validateobj.ElementAt(0);
-                    obj.Name = request.name;
-                    obj.Status = "A";
-                    obj.Modifiedby = loggedinuser.id;
-                    obj.Modifieddate = currentdatetime;
-                    var modifiedobj = db.PlaneMakes.Update(obj);
-                    db.SaveChanges();
+                    if (validateobjexist.Count == 0)
+                    {
+                        DateTime currentdatetime = DateTime.Now;
 
-                    Data.Models.PlaneMakesLog objlog = new Data.Models.PlaneMakesLog();
-                    objlog.Planemakeid = obj.Id;
-                    objlog.Name = request.name;
-                    objlog.Status = "A";
-                    objlog.Action = "Modified";
-                    objlog.Createdby = obj.Createdby;
-                    objlog.Createddate = obj.Createddate;
-                    objlog.Modifiedby = loggedinuser.id;
-                    objlog.Modifieddate = currentdatetime;
-                    var modifiedobjlog = db.PlaneMakesLogs.Update(objlog);
-                    db.SaveChanges();
+                        Data.Models.PlaneMake obj = validateobj.ElementAt(0);
+                        obj.Name = request.name;
+                        obj.Status = "A";
+                        obj.Modifiedby = loggedinuser.id;
+                        obj.Modifieddate = currentdatetime;
+                        var modifiedobj = db.PlaneMakes.Update(obj);
+                        db.SaveChanges();
+
+                        Data.Models.PlaneMakesLog objlog = new Data.Models.PlaneMakesLog();
+                        objlog.Planemakeid = obj.Id;
+                        objlog.Name = request.name;
+                        objlog.Status = "A";
+                        objlog.Action = "Modified";
+                        objlog.Createdby = obj.Createdby;
+                        objlog.Createddate = obj.Createddate;
+                        objlog.Modifiedby = loggedinuser.id;
+                        objlog.Modifieddate = currentdatetime;
+                        var modifiedobjlog = db.PlaneMakesLogs.Update(objlog);
+                        db.SaveChanges();
 
 
-                    apiresponse.code = 1;
-                    apiresponse.message = "Plane make modification successful!";
+                        apiresponse.code = 1;
+                        apiresponse.message = "Plane make modification successful!";
+                    }
+                    else
+                    {
+                        apiresponse.code = 99;
+                        apiresponse.message = "Plane make already exists!";
+                    }
                 }
                 else
                 {
@@ -220,37 +230,46 @@ namespace Business
             {
                 Data.ResponseModels.APIReponseDetails apiresponse = new Data.ResponseModels.APIReponseDetails();
 
-                var validateobj = db.PlaneModels.Where(a => a.Id == request.modelid && a.Status == "A").ToList();
-
-                if (validateobj.Count > 0)
+                var validateobjexist = db.PlaneModels.Where(a => a.Id == request.modelid && a.Status == "A").ToList();
+                if (validateobjexist.Count > 0)
                 {
-                    DateTime currentdatetime = DateTime.Now;
+                    var validateobj = db.PlaneModels.Where(a => a.Name == request.name && a.Id != request.modelid && a.Status == "A").ToList();
 
-                    Data.Models.PlaneModel obj = validateobj.ElementAt(0);
-                    obj.Name = request.name;
-                    obj.Makeid = request.makeid;
-                    obj.Status = "A";
-                    obj.Modifiedby = loggedinuser.id;
-                    obj.Modifieddate = currentdatetime;
-                    var modifiedobj = db.PlaneModels.Update(obj);
-                    db.SaveChanges();
+                    if (validateobjexist.Count == 0)
+                    {
+                        DateTime currentdatetime = DateTime.Now;
 
-                    Data.Models.PlaneModelsLog objlog = new Data.Models.PlaneModelsLog();
-                    objlog.Planemodelid = obj.Id;
-                    objlog.Name = request.name;
-                    objlog.Makeid = request.makeid;
-                    objlog.Status = "A";
-                    objlog.Action = "Modified";
-                    objlog.Createdby = obj.Createdby;
-                    objlog.Createddate = obj.Createddate;
-                    objlog.Modifiedby = loggedinuser.id;
-                    objlog.Modifieddate = currentdatetime;
-                    var modifiedobjlog = db.PlaneModelsLogs.Update(objlog);
-                    db.SaveChanges();
+                        Data.Models.PlaneModel obj = validateobj.ElementAt(0);
+                        obj.Name = request.name;
+                        obj.Makeid = request.makeid;
+                        obj.Status = "A";
+                        obj.Modifiedby = loggedinuser.id;
+                        obj.Modifieddate = currentdatetime;
+                        var modifiedobj = db.PlaneModels.Update(obj);
+                        db.SaveChanges();
+
+                        Data.Models.PlaneModelsLog objlog = new Data.Models.PlaneModelsLog();
+                        objlog.Planemodelid = obj.Id;
+                        objlog.Name = request.name;
+                        objlog.Makeid = request.makeid;
+                        objlog.Status = "A";
+                        objlog.Action = "Modified";
+                        objlog.Createdby = obj.Createdby;
+                        objlog.Createddate = obj.Createddate;
+                        objlog.Modifiedby = loggedinuser.id;
+                        objlog.Modifieddate = currentdatetime;
+                        var modifiedobjlog = db.PlaneModelsLogs.Update(objlog);
+                        db.SaveChanges();
 
 
-                    apiresponse.code = 1;
-                    apiresponse.message = "Plane model modification successful!";
+                        apiresponse.code = 1;
+                        apiresponse.message = "Plane model modification successful!";
+                    }
+                    else
+                    {
+                        apiresponse.code = 99;
+                        apiresponse.message = "Plane model already exists!";
+                    }
                 }
                 else
                 {
@@ -383,45 +402,55 @@ namespace Business
             {
                 Data.ResponseModels.APIReponseDetails apiresponse = new Data.ResponseModels.APIReponseDetails();
 
-                var validateobj = db.Planes.Where(a => a.Id == request.planeid && a.Status == "A").ToList();
+                var validateobjexist = db.Planes.Where(a => a.Id == request.planeid && a.Status == "A").ToList();
 
-                if (validateobj.Count > 0)
+                if (validateobjexist.Count > 0)
                 {
-                    DateTime currentdatetime = DateTime.Now;
+                    var validateobj = db.Planes.Where(a => a.Reference == request.referenceprefix + "-" + request.referencesuffix && a.Id != request.planeid && a.Status == "A").ToList();
 
-                    Data.Models.Plane obj = validateobj.ElementAt(0);
-                    obj.Makeid = request.makeid;
-                    obj.Modelid = request.modelid;
-                    obj.Image = Convert.FromBase64String(request.image);
-                    obj.Reference = request.referenceprefix + "-" + request.referencesuffix;
-                    obj.Referenceprefix = request.referenceprefix;
-                    obj.Referencesuffix = request.referencesuffix;
-                    obj.Status = "A";
-                    obj.Modifiedby = loggedinuser.id;
-                    obj.Modifieddate = currentdatetime;
-                    var modifiedobj = db.Planes.Update(obj);
-                    db.SaveChanges();
+                    if (validateobjexist.Count == 0)
+                    {
+                        DateTime currentdatetime = DateTime.Now;
 
-                    Data.Models.PlanesLog objlog = new Data.Models.PlanesLog();
-                    objlog.Planeid = obj.Id;
-                    objlog.Makeid = request.makeid;
-                    objlog.Modelid = request.modelid;
-                    objlog.Image = Convert.FromBase64String(request.image);
-                    objlog.Reference = request.referenceprefix + "-" + request.referencesuffix;
-                    objlog.Referenceprefix = request.referenceprefix;
-                    objlog.Referencesuffix = request.referencesuffix;
-                    objlog.Status = "A";
-                    objlog.Action = "Modified";
-                    objlog.Createdby = obj.Createdby;
-                    objlog.Createddate = obj.Createddate;
-                    objlog.Modifiedby = loggedinuser.id;
-                    objlog.Modifieddate = currentdatetime;
-                    var modifiedobjlog = db.PlanesLogs.Update(objlog);
-                    db.SaveChanges();
+                        Data.Models.Plane obj = validateobj.ElementAt(0);
+                        obj.Makeid = request.makeid;
+                        obj.Modelid = request.modelid;
+                        obj.Image = Convert.FromBase64String(request.image);
+                        obj.Reference = request.referenceprefix + "-" + request.referencesuffix;
+                        obj.Referenceprefix = request.referenceprefix;
+                        obj.Referencesuffix = request.referencesuffix;
+                        obj.Status = "A";
+                        obj.Modifiedby = loggedinuser.id;
+                        obj.Modifieddate = currentdatetime;
+                        var modifiedobj = db.Planes.Update(obj);
+                        db.SaveChanges();
+
+                        Data.Models.PlanesLog objlog = new Data.Models.PlanesLog();
+                        objlog.Planeid = obj.Id;
+                        objlog.Makeid = request.makeid;
+                        objlog.Modelid = request.modelid;
+                        objlog.Image = Convert.FromBase64String(request.image);
+                        objlog.Reference = request.referenceprefix + "-" + request.referencesuffix;
+                        objlog.Referenceprefix = request.referenceprefix;
+                        objlog.Referencesuffix = request.referencesuffix;
+                        objlog.Status = "A";
+                        objlog.Action = "Modified";
+                        objlog.Createdby = obj.Createdby;
+                        objlog.Createddate = obj.Createddate;
+                        objlog.Modifiedby = loggedinuser.id;
+                        objlog.Modifieddate = currentdatetime;
+                        var modifiedobjlog = db.PlanesLogs.Update(objlog);
+                        db.SaveChanges();
 
 
-                    apiresponse.code = 1;
-                    apiresponse.message = "Plane modification successful!";
+                        apiresponse.code = 1;
+                        apiresponse.message = "Plane modification successful!";
+                    }
+                    else
+                    {
+                        apiresponse.code = 99;
+                        apiresponse.message = "Plane already exists!";
+                    }
                 }
                 else
                 {

@@ -25,46 +25,54 @@ namespace Business
             using (var db = new PSAContext(configuration))
             {
                 Data.ResponseModels.APIReponseDetails apiresponse = new Data.ResponseModels.APIReponseDetails();
-
-                var validateobj = db.PlaneSpottings.Where(a => a.Location == request.location && a.Date==request.date && a.Status == "A").ToList();
-
-                if (validateobj.Count == 0)
+                if (request.date > DateTime.Now)
                 {
-                    DateTime currentdatetime = DateTime.Now;
 
-                    Data.Models.PlaneSpotting obj = new Data.Models.PlaneSpotting();
-                    obj.Planeid = request.planeid;
-                    obj.Location = request.location;
-                    obj.Date = request.date;
-                    obj.Image = Convert.FromBase64String(request.image);
-                    obj.Status = "A";
-                    obj.Createdby = loggedinuser.id;
-                    obj.Createddate = currentdatetime;
-                    var createdobj = db.PlaneSpottings.Add(obj);
-                    db.SaveChanges();
+                    var validateobj = db.PlaneSpottings.Where(a => a.Location == request.location && a.Date == request.date && a.Status == "A").ToList();
 
+                    if (validateobj.Count == 0)
+                    {
+                        DateTime currentdatetime = DateTime.Now;
 
-                    Data.Models.PlaneSpottingsLog objlog = new Data.Models.PlaneSpottingsLog();
-                    objlog.Planespottingid = obj.Id;
-                    objlog.Planeid = request.planeid;
-                    objlog.Location = request.location;
-                    objlog.Date = request.date;
-                    objlog.Image = Convert.FromBase64String(request.image);
-                    objlog.Status = "A";
-                    objlog.Action = "Created";
-                    objlog.Createdby = loggedinuser.id;
-                    objlog.Createddate = currentdatetime;
-                    var createdobjlog = db.PlaneSpottingsLogs.Add(objlog);
-                    db.SaveChanges();
+                        Data.Models.PlaneSpotting obj = new Data.Models.PlaneSpotting();
+                        obj.Planeid = request.planeid;
+                        obj.Location = request.location;
+                        obj.Date = request.date;
+                        obj.Image = Convert.FromBase64String(request.image);
+                        obj.Status = "A";
+                        obj.Createdby = loggedinuser.id;
+                        obj.Createddate = currentdatetime;
+                        var createdobj = db.PlaneSpottings.Add(obj);
+                        db.SaveChanges();
 
 
-                    apiresponse.code = 1;
-                    apiresponse.message = "Plane spotting added successful!";
+                        Data.Models.PlaneSpottingsLog objlog = new Data.Models.PlaneSpottingsLog();
+                        objlog.Planespottingid = obj.Id;
+                        objlog.Planeid = request.planeid;
+                        objlog.Location = request.location;
+                        objlog.Date = request.date;
+                        objlog.Image = Convert.FromBase64String(request.image);
+                        objlog.Status = "A";
+                        objlog.Action = "Created";
+                        objlog.Createdby = loggedinuser.id;
+                        objlog.Createddate = currentdatetime;
+                        var createdobjlog = db.PlaneSpottingsLogs.Add(objlog);
+                        db.SaveChanges();
+
+
+                        apiresponse.code = 1;
+                        apiresponse.message = "Plane spotting added successful!";
+                    }
+                    else
+                    {
+                        apiresponse.code = 99;
+                        apiresponse.message = "Plane spotting has been already added!";
+                    }
                 }
                 else
                 {
                     apiresponse.code = 99;
-                    apiresponse.message = "Plane spotting has been already added!";
+                    apiresponse.message = "Date cannot be a future date!";
                 }
                 return apiresponse;
             }
@@ -74,47 +82,55 @@ namespace Business
         {
             using (var db = new PSAContext(configuration))
             {
+
                 Data.ResponseModels.APIReponseDetails apiresponse = new Data.ResponseModels.APIReponseDetails();
-
-                var validateobj = db.PlaneSpottings.Where(a => a.Id == request.planespottingid && a.Status == "A").ToList();
-
-                if (validateobj.Count > 0)
+                if (request.date > DateTime.Now)
                 {
-                    DateTime currentdatetime = DateTime.Now;
+                    var validateobj = db.PlaneSpottings.Where(a => a.Id == request.planespottingid && a.Status == "A").ToList();
 
-                    Data.Models.PlaneSpotting obj = validateobj.ElementAt(0);
-                    obj.Planeid = request.planeid;
-                    obj.Location = request.location;
-                    obj.Date = request.date;
-                    obj.Status = "A";
-                    obj.Modifiedby = loggedinuser.id;
-                    obj.Modifieddate = currentdatetime;
-                    var modifiedobj = db.PlaneSpottings.Update(obj);
-                    db.SaveChanges();
+                    if (validateobj.Count > 0)
+                    {
+                        DateTime currentdatetime = DateTime.Now;
 
-                    Data.Models.PlaneSpottingsLog objlog = new Data.Models.PlaneSpottingsLog();
-                    objlog.Planespottingid = obj.Id;
-                    objlog.Planeid = request.planeid;
-                    objlog.Location = request.location;
-                    objlog.Date = request.date;
-                    objlog.Image = Convert.FromBase64String(request.image);
-                    objlog.Status = "A";
-                    objlog.Action = "Modified";
-                    objlog.Createdby = obj.Createdby;
-                    objlog.Createddate = obj.Createddate;
-                    objlog.Modifiedby = loggedinuser.id;
-                    objlog.Modifieddate = currentdatetime;
-                    var modifiedobjlog = db.PlaneSpottingsLogs.Update(objlog);
-                    db.SaveChanges();
+                        Data.Models.PlaneSpotting obj = validateobj.ElementAt(0);
+                        obj.Planeid = request.planeid;
+                        obj.Location = request.location;
+                        obj.Date = request.date;
+                        obj.Status = "A";
+                        obj.Modifiedby = loggedinuser.id;
+                        obj.Modifieddate = currentdatetime;
+                        var modifiedobj = db.PlaneSpottings.Update(obj);
+                        db.SaveChanges();
+
+                        Data.Models.PlaneSpottingsLog objlog = new Data.Models.PlaneSpottingsLog();
+                        objlog.Planespottingid = obj.Id;
+                        objlog.Planeid = request.planeid;
+                        objlog.Location = request.location;
+                        objlog.Date = request.date;
+                        objlog.Image = Convert.FromBase64String(request.image);
+                        objlog.Status = "A";
+                        objlog.Action = "Modified";
+                        objlog.Createdby = obj.Createdby;
+                        objlog.Createddate = obj.Createddate;
+                        objlog.Modifiedby = loggedinuser.id;
+                        objlog.Modifieddate = currentdatetime;
+                        var modifiedobjlog = db.PlaneSpottingsLogs.Update(objlog);
+                        db.SaveChanges();
 
 
-                    apiresponse.code = 1;
-                    apiresponse.message = "Plane spotting modification successful!";
+                        apiresponse.code = 1;
+                        apiresponse.message = "Plane spotting modification successful!";
+                    }
+                    else
+                    {
+                        apiresponse.code = 99;
+                        apiresponse.message = "Plane spotting modification unsuccessful!";
+                    }
                 }
                 else
                 {
                     apiresponse.code = 99;
-                    apiresponse.message = "Plane spotting modification unsuccessful!";
+                    apiresponse.message = "Date cannot be a future date!";
                 }
                 return apiresponse;
             }
@@ -124,8 +140,8 @@ namespace Business
         {
             using (var db = new PSAContext(configuration))
             {
-                Data.ResponseModels.APIReponseDetails apiresponse = new Data.ResponseModels.APIReponseDetails();
 
+                Data.ResponseModels.APIReponseDetails apiresponse = new Data.ResponseModels.APIReponseDetails();
                 var validateobj = db.PlaneSpottings.Where(a => a.Id == request.planespottingid && a.Status == "A").ToList();
 
                 if (validateobj.Count > 0)
