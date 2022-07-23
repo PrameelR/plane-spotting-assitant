@@ -1,0 +1,14 @@
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\bin\Debug\net6.0\Data.deps.json
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\bin\Debug\net6.0\Data.runtimeconfig.json
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\bin\Debug\net6.0\Data.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\bin\Debug\net6.0\ref\Data.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\bin\Debug\net6.0\Data.pdb
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.AssemblyInfoInputs.cache
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.AssemblyInfo.cs
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.csproj.CoreCompileInputs.cache
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\ref\Data.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.pdb
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.genruntimeconfig.cache
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Data\obj\Debug\net6.0\Data.csproj.AssemblyReference.cache

@@ -1,0 +1,15 @@
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\bin\Debug\net6.0\Business.deps.json
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\bin\Debug\net6.0\Business.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\bin\Debug\net6.0\ref\Business.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\bin\Debug\net6.0\Business.pdb
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\bin\Debug\net6.0\Data.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\bin\Debug\net6.0\Data.pdb
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.csproj.AssemblyReference.cache
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.AssemblyInfoInputs.cache
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.AssemblyInfo.cs
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.csproj.CoreCompileInputs.cache
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.csproj.CopyComplete
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\ref\Business.dll
+C:\Users\Prameel\Desktop\Systems\Plane spotting aassistant\PSA\Business\obj\Debug\net6.0\Business.pdb
