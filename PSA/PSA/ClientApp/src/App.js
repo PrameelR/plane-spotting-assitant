@@ -27,12 +27,13 @@ const createHistory = require('history');
 //export const history = createHistory();
 // API key of the google map
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 //composeEnhancers(applyMiddleware(thunk))
 
 const store = createStore(
     rootReducer,
-    composeEnhancers(applyMiddleware(thunk))
+    applyMiddleware(thunk)
+    //composeEnhancers(applyMiddleware(thunk))
 );
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
